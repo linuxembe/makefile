@@ -22,7 +22,10 @@ $(DIRS) :
 	$(MKDIR) $@
 
 $(DIR_OBJS)/%.o : %.c
-	$(CC) -o $@ -c $^
+    ifeq ($(DEBUG),true)
+		$(CC) -o $@ -g -c $^
+    else
+		$(CC) -o $@ -c $^
 
 rebuild : clean all
 
